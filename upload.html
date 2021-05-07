@@ -133,7 +133,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         function submitForm() {
-            document.getElementById("response").innerHTML = "File succesfully uploaded.";
 
 
             console.log("submit event");
@@ -148,8 +147,10 @@
             }).done(function (data) {
                 console.log("PHP Output:");
                 console.log(data);
+                document.getElementById("response").innerHTML = "File succesfully uploaded.";
 
             });
+
 
 
             return false;

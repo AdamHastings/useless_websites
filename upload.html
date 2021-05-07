@@ -1,34 +1,201 @@
 <!DOCTYPE html>
 <html>
+
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+<style>
+    .container {
+        height: 100px;
+        position: relative;
+    }
+
+    .btn {
+        background-color: #1e8fff;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+        transition: .1s ease;
+    }
+
+    h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 40;
+    }
+
+    h2 {
+        clear: both;
+        font-family: monospace;
+        font-weight: 200;
+        text-align: left;
+        font-size: 20;
+        border-bottom: 2px solid black;
+        padding: 10 10 10 0;
+        text-decoration: none;
+    }
+
+    h3 {
+        clear: both;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        padding: 100 100 100 100;
+        margin: 100 100 100 100;
+        font-size: 20
+    }
+
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 0 30 0 30;
+        font-size: 18;
+        line-height: 1.5;
+        text-align: center;
+        background-color: greenyellow;
+        color: black;
+    }
+
+    .form-class {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18;
+
+        padding: 10px 10px 10px 10px;
+        margin: 50px auto 50px auto;
+        min-width: 300px;
+        max-width: 600;
+
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .table-class {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16;
+        padding: 50 0 50 0;
+        max-width: 600;
+        margin: 0 auto 0 auto
+    }
+
+    .img {
+        display: block;
+        width: 800;
+        margin: 300 auto 200 auto;
+    }
+
+    #content {
+        margin: 0 auto 0 auto;
+        max-width: 800;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    mark {
+        background-color: greenyellow;
+        color: black;
+    }
+
+    .banner {
+        height: 80px;
+        background: #3F94C1;
+        padding: 0;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        width: 100%;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+
 <head>
-    <title>Image Upload Form</title>
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <title> Adam Hastings, PhD Student, Computer Science </title>
+</head>
+
+
+<head>
+    <title>Upload Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         function submitForm() {
+            document.getElementById("response").innerHTML = "File succesfully uploaded.";
+
+
             console.log("submit event");
             var fd = new FormData(document.getElementById("fileinfo"));
             fd.append("label", "WEBUPLOAD");
             $.ajax({
-              url: "upload.php",
-              type: "POST",
-              data: fd,
-              processData: false,  // tell jQuery not to process the data
-              contentType: false   // tell jQuery not to set contentType
-            }).done(function( data ) {
+                url: "upload.php",
+                type: "POST",
+                data: fd,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false   // tell jQuery not to set contentType
+            }).done(function (data) {
                 console.log("PHP Output:");
-                console.log( data );
+                console.log(data);
+
             });
+
+
             return false;
+
         }
+
     </script>
 </head>
 
 <body>
-    <form method="post" id="fileinfo" name="fileinfo" onsubmit="return submitForm();">
-        <label>Select a file:</label><br>
-        <input type="file" name="file" required />
-        <input type="submit" value="Upload" />
-    </form>
-    <div id="output"></div>
+    <div class="banner">
+        <img style="height:60px; padding:5px; margin:auto; display: block; margin-left: auto; margin-right: auto;"
+            src="cu-header.svg" alt="Columbia Engineering">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <h1>
+            Select a file below and click "Upload"
+        </h1>
+        <form class="form-class" method="post" id="fileinfo" name="fileinfo" onsubmit="return submitForm();">
+            <input type="file" name="file" required />
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <input type="submit" value="Upload" class="btn" />
+        </form>
+    </div>
+    <div>
+        <mark>
+        <p id="response">
+              
+        </p>
+    </mark>
+    </div>
+
+    <!-- <div >
+        <img style="height:60px; padding:5px; margin:auto; display: block; margin-left: auto; margin-right: auto;" src="cs.png" alt="Columbia Engineering">
+        <br>
+          <br>
+          <br>
+      </div> -->
 </body>
+
 </html>
